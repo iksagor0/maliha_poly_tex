@@ -6,24 +6,68 @@
 
 .App {
   font-family: sans-serif;
+  max-width: 270px;
+  margin: 50px auto 0;
+}
+h1 {
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
+  font-size: 40px;
 }
 
-textarea {
-  height: 200px;
-  width: 200px;
-  resize: none;
-  outline: 0;
-  margin-top: 100px;
+button {
+  cursor: pointer;
 }
 
-input {
-  width: 200px;
+input,
+button {
   padding: 3px;
   font-size: 18px;
+  border: 1px solid #333;
+  border-radius: 3px;
+  width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="checkbox"] {
+  background: #000;
+  width: 24px;
+  aspect-ratio: 1/1;
+  margin-bottom: 0;
+}
+
+label {
+  width: 100%;
+  cursor: pointer;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 3px;
+}
+
+.input-container.checkAll {
+  margin: 20px 0 10px !important;
+  background: gray;
+  color: #fff;
+}
+
+.form-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+p.output {
+  background: #ec6600;
+  padding: 5px;
+  color: rgb(249, 249, 249);
+  border-radius: 5px;
 }

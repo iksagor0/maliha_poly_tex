@@ -1,19 +1,13 @@
 import React, { useReducer, useState } from "react";
 import "./App.css";
 
-// State Structure
-// state = [
-//   { value: "10", check: false },
-//   { value: "20", check: false },
-// ];
-
 const reducer = (state, action) => {
   switch (action.type) {
     case "addTextBox":
       return [...state, action.result];
 
     case "updateFieldData":
-      return [...state];
+      return [...action.result];
 
     default:
       return state;
@@ -71,46 +65,37 @@ function App() {
     }
   });
 
-  const selectedPosition = !selected[0]
-    ? "0 items"
-    : selected.length === fieldData.length
-    ? `All ${selected.length} items `
-    : `${selected.length} items, there position is ${selected.map(
-        (item) => `${item}`
-      )},`;
+  const selectedPosition =
+    fieldData[0] && selected.length === fieldData.length
+      ? `All ${selected.length} items `
+      : `${selected.length} items, there position is ${selected.map(
+          (item) => `${item}`
+        )},`;
 
   return (
     <div className="App">
-      <h1>Task 2</h1>
       {/* Adding Textbox */}
       <form onSubmit={addTextBox}>
-        <input
-          type="number"
-          value={inputCount}
-          onChange={handleInputCount}
-          onFocus={(e) => e.target.select()}
-        />
+        <input type="number" value={inputCount} onChange={handleInputCount} />
 
         <button onSubmit={addTextBox}>Add Textbox</button>
       </form>
 
       {/* Check All */}
       {fieldData[1] && (
-        <div className="input-container checkAll">
-          <div className="form-control">
-            <input
-              type="checkbox"
-              id="allCheck"
-              checked={allChecked}
-              onChange={handleAllCheck}
-            />
-            <label htmlFor="allCheck">Check All</label>
-          </div>
+        <div className="input-container">
+          <input
+            type="checkbox"
+            id="allCheck"
+            checked={allChecked}
+            onChange={handleAllCheck}
+          />
+          <label htmlFor="allCheck">Check All</label>
         </div>
       )}
 
       {/* Input Boxes */}
-      <div className="input-container fieldData">
+      <div className="input-container">
         {fieldData.map((item, index) => (
           <div className="form-control" key={index}>
             <input
@@ -131,12 +116,10 @@ function App() {
       </div>
 
       {/* Result Printing */}
-      {fieldData[0] && (
-        <p className="output">
-          Selected <b>{selectedPosition}</b> and Total Number is{" "}
-          <b>{totalNumber}</b>
-        </p>
-      )}
+      <p>
+        Selected <b>{selectedPosition}</b> and Total Number is{" "}
+        <b>{totalNumber}</b>
+      </p>
     </div>
   );
 }
